@@ -1,6 +1,8 @@
 FROM alpine
 
-RUN apk update && apk add socat
+# add stupid workaround for stupid bug https://github.com/alpinelinux/docker-alpine/issues/98
+RUN sed -i 's/https/http/' /etc/apk/repositories
+RUN apk --update add socat
 
 EXPOSE 2375
 
