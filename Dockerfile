@@ -1,9 +1,9 @@
-FROM alpine
+FROM debian:stable-slim
 
 # add stupid workaround for stupid bug https://github.com/alpinelinux/docker-alpine/issues/98
-RUN sed -i 's/https/http/' /etc/apk/repositories
-RUN apk --update add socat
+RUN apt-get update
+RUN apt-get install socat -y
 
-EXPOSE 2375
+EXPOSE 2375/tcp
 
 CMD socat TCP-LISTEN:2375,reuseaddr,fork UNIX-CLIENT:/var/run/docker.sock
