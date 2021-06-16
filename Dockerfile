@@ -1,7 +1,6 @@
-FROM debian:stable-slim
+FROM alpine
 
-RUN apt-get update
-RUN apt-get install socat -y
+RUN apk --update add socat
 
 EXPOSE 2375/tcp
 
